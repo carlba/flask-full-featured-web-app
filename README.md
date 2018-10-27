@@ -49,3 +49,5 @@ User('genzorg', 'genzorg@gmail.com', 'default.jpg')
 []
 ```
 
+## Circular imports
+https://youtu.be/44PvX0Yv368?t=255
