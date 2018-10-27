@@ -14,6 +14,7 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'  # same as the value that would be passed into url_for
+login_manager.login_message_category = 'info'
 
 # This import is here to avoid circular imports.  If they were at the top of the file routes.py
 # would try to import app before it was initialized.
