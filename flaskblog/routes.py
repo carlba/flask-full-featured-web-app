@@ -1,18 +1,7 @@
-from flask import Flask, render_template, url_for, flash, redirect
-from flask_sqlalchemy import SQLAlchemy
+from flask import render_template, url_for, flash, redirect
 
-from forms import RegistrationForm, LoginForm
-from models import User, Post
-
-app = Flask(__name__)
-# noinspection SpellCheckingInspection
-# import secrets
-# secrets.token_hex(16)
-app.config['SECRET_KEY'] = 'bcaa436189daf75374ecebec4a652522'
-# The three slashes means a relative path so the file will next to the script
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-
-db = SQLAlchemy(app)
+from flaskblog import app
+from flaskblog.forms import RegistrationForm, LoginForm
 
 
 posts = [
@@ -61,7 +50,3 @@ def login():
         else:
             flash('Login unsuccessful. Please check your username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
