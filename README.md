@@ -51,3 +51,10 @@ User('genzorg', 'genzorg@gmail.com', 'default.jpg')
 
 ## Circular imports
 https://youtu.be/44PvX0Yv368?t=255
+
+## Debugging
+
+### How to use the web ui for debugging 
+https://youtu.be/CSHx6eCkmv0?t=764
+
+**Never use Flask in debug mode in production mode since it exposes a python interpreter**
