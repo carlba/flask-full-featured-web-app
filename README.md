@@ -1,9 +1,9 @@
 # flask-full-featured-web-app
 https://www.youtube.com/watch?v=MwZwr5Tvyxo
 
-# Database
+## Database
 
-## Creating and observing sample data using the models in this application
+### Creating and observing sample data using the models in this application
 
 ```
 >>> db.create_all()
@@ -58,3 +58,25 @@ https://youtu.be/44PvX0Yv368?t=255
 https://youtu.be/CSHx6eCkmv0?t=764
 
 **Never use Flask in debug mode in production mode since it exposes a python interpreter**
+
+## Credentials
+
+### Generate a random hex (suitable for a password)
+
+https://youtu.be/803Ei2Sq-Zs?t=1694
+
+* 3.6
+  ```python
+  import secrets
+  random_hex = secrets.token_hex(8)
+   
+  ```
+  
+* 2.7
+  ```python
+  import os
+  import binascii
+  binascii.hexlify(os.urandom(8)).decode('ascii')   
+  ```
+  
+
