@@ -70,9 +70,18 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/account')  # wrong order will not enable the login_required decorator
+@app.route('/account', methods=['GET', 'POST'])  # wrong order will not enable the login_required decorator
 @login_required
 def account():
     form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account been updated!', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
     image_file = url_for('static', filename=f'profile_pictures/{current_user.image_file}')
     return render_template('account.html', title='Account', image_file=image_file, form=form)
