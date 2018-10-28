@@ -73,4 +73,5 @@ def logout():
 @app.route('/account')  # wrong order will not enable the login_required decorator
 @login_required
 def account():
-    return render_template('account.html', title='Account')
+    image_file = url_for('static', filename=f'profile_pictures/{current_user.image_file}')
+    return render_template('account.html', title='Account', image_file=image_file)
