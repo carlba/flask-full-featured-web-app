@@ -1,6 +1,7 @@
 import os
 import secrets
 
+from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -79,7 +80,13 @@ def save_picture(form_picture_data):
     new_picture_filename = f'{random_hex}{extension}'
     # TODO: Can saving the file be done without manual path handling?
     picture_path = os.path.join(app.root_path, 'static/profile_pictures', new_picture_filename)
-    form_picture_data.save(picture_path)
+
+    # https://pillow.readthedocs.io/en/3.1.x/reference/Image.html
+    output_size = (125, 125)
+    image = Image.open(form_picture_data)
+    image.thumbnail(output_size)
+    image.save(picture_path)
+
     return new_picture_filename
 
 
