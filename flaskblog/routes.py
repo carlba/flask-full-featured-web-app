@@ -105,7 +105,7 @@ def new_post():
         db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('home'))
-    return render_template('create_post.html', title='New Post', form=form)
+    return render_template('create_post.html', title='New Post', legend='New Post', form=form)
 
 
 @app.route("/post/<int:post_id>")
@@ -114,11 +114,20 @@ def post(post_id):
     return render_template('post.html', title=post.title, post=post)
 
 
-@app.route("/post/<int:post_id>/update")
+@app.route("/post/<int:post_id>/update",  methods=['GET', 'POST'])
 @login_required
 def update_post(post_id):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
     form = PostForm()
-    return render_template('create_post.html', title='Update Post', form=form)
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        db.session.commit()
+        flash('Your post has been updated!', 'success')
+        redirect(url_for('post', post_id=post.id))
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template('create_post.html', title='Update Post', legend='Update Post', form=form)
