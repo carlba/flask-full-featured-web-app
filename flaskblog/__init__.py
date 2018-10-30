@@ -27,4 +27,10 @@ mail = Mail(app)
 
 # This import is here to avoid circular imports.  If they were at the top of the file routes.py
 # would try to import app before it was initialized.
-from flaskblog import routes
+from flaskblog.users.routes import users
+from flaskblog.posts.routes import posts
+from flaskblog.main.routes import main
+
+app.register_blueprint(users)
+app.register_blueprint(posts)
+app.register_blueprint(main)
