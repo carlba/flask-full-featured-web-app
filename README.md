@@ -80,3 +80,12 @@ https://youtu.be/803Ei2Sq-Zs?t=1694
   ```
   
 
+## Mail
+
+A working Gmail integration requires you to follow the instructions 
+[here](https://myaccount.google.com/lesssecureapps). The username and password should be red from
+environment variables check the source of this repo for instructions on how to do this.
+
+**Please note the specific instructions regarding 2-Step Verification enabled** 
+
+
