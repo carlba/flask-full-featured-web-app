@@ -109,3 +109,4 @@ venv.bak/
 # Project related
 flaskblog/static/profile_pictures
 flaskblog/site.db
+.DS_Store
